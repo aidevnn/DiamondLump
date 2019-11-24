@@ -1,0 +1,33 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDarrayLib", "NDarrayLib\NDarrayLib.csproj", "{E35C15A2-C96E-4720-9F1F-A6294FFFA20B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiamondLump", "DiamondLump\DiamondLump.csproj", "{23781C83-DE89-4ED6-BF90-1233478A8E0F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E35C15A2-C96E-4720-9F1F-A6294FFFA20B}.Debug|x86.ActiveCfg = Debug|x86
+		{E35C15A2-C96E-4720-9F1F-A6294FFFA20B}.Debug|x86.Build.0 = Debug|x86
+		{E35C15A2-C96E-4720-9F1F-A6294FFFA20B}.Release|x86.ActiveCfg = Release|x86
+		{E35C15A2-C96E-4720-9F1F-A6294FFFA20B}.Release|x86.Build.0 = Release|x86
+		{E35C15A2-C96E-4720-9F1F-A6294FFFA20B}.Debug|x64.ActiveCfg = Debug|x64
+		{E35C15A2-C96E-4720-9F1F-A6294FFFA20B}.Debug|x64.Build.0 = Debug|x64
+		{E35C15A2-C96E-4720-9F1F-A6294FFFA20B}.Release|x64.ActiveCfg = Release|x64
+		{E35C15A2-C96E-4720-9F1F-A6294FFFA20B}.Release|x64.Build.0 = Release|x64
+		{23781C83-DE89-4ED6-BF90-1233478A8E0F}.Debug|x86.ActiveCfg = Debug|x86
+		{23781C83-DE89-4ED6-BF90-1233478A8E0F}.Debug|x86.Build.0 = Debug|x86
+		{23781C83-DE89-4ED6-BF90-1233478A8E0F}.Release|x86.ActiveCfg = Release|x86
+		{23781C83-DE89-4ED6-BF90-1233478A8E0F}.Release|x86.Build.0 = Release|x86
+		{23781C83-DE89-4ED6-BF90-1233478A8E0F}.Debug|x64.ActiveCfg = Debug|x64
+		{23781C83-DE89-4ED6-BF90-1233478A8E0F}.Debug|x64.Build.0 = Debug|x64
+		{23781C83-DE89-4ED6-BF90-1233478A8E0F}.Release|x64.ActiveCfg = Release|x64
+		{23781C83-DE89-4ED6-BF90-1233478A8E0F}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{23781C83-DE89-4ED6-BF90-1233478A8E0F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DiamondLump</RootNamespace>
+    <AssemblyName>DiamondLump</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>Latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>Latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>Latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>Latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Activations\IActivation.cs" />
+    <Compile Include="Activations\SigmoidActivation.cs" />
+    <Compile Include="Activations\TanhActivation.cs" />
+    <Compile Include="Activations\ReluActivation.cs" />
+    <Compile Include="Activations\SoftmaxActivation.cs" />
+    <Compile Include="Losses\ILoss.cs" />
+    <Compile Include="Losses\MeanSquaredLoss.cs" />
+    <Compile Include="Losses\CrossEntropyLoss.cs" />
+    <Compile Include="Losses\IAccuracy.cs" />
+    <Compile Include="Optimizers\IOptimizer.cs" />
+    <Compile Include="Optimizers\SGD.cs" />
+    <Compile Include="Optimizers\Adam.cs" />
+    <Compile Include="Layers\ILayer.cs" />
+    <Compile Include="Layers\ActivationLayer.cs" />
+    <Compile Include="Layers\DenseLayer.cs" />
+    <Compile Include="Network.cs" />
+    <Compile Include="ImportDataset.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Activations\" />
+    <Folder Include="Losses\" />
+    <Folder Include="Optimizers\" />
+    <Folder Include="Layers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NDarrayLib\NDarrayLib.csproj">
+      <Project>{E35C15A2-C96E-4720-9F1F-A6294FFFA20B}</Project>
+      <Name>NDarrayLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="datasets\digits.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="datasets\iris.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
