@@ -5,6 +5,7 @@ Simple Multi Layers Perceptron
 ## Xor Dataset
 
 ```
+var (trainX, trainY) = ImportDataset.XorDataset<float>();
 var net = new Network<float>(new SGD<float>(0.1f), new MeanSquaredLoss<float>(), new RoundAccuracy<float>());
 net.AddLayer(new DenseLayer<float>(8, inputShape: 2));
 net.AddLayer(new TanhLayer<float>());

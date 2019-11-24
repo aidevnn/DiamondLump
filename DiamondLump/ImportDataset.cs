@@ -7,6 +7,16 @@ namespace DiamondLump
 {
     public static class ImportDataset
     {
+        public static (NDarray<U>, NDarray<U>) XorDataset<U>()
+        {
+            double[,] X0 = { { 0.0, 0.0 }, { 0.0, 1.0 }, { 1.0, 0.0 }, { 1.0, 1.0 } };
+            double[,] y0 = { { 0.0 }, { 1.0 }, { 1.0 }, { 0.0 } };
+            double[][] X = Enumerable.Range(0, 4).Select(i => Enumerable.Range(0, 2).Select(j => X0[i, j]).ToArray()).ToArray();
+            double[][] y = Enumerable.Range(0, 4).Select(i => Enumerable.Range(0, 1).Select(j => y0[i, j]).ToArray()).ToArray();
+            var trainX = new NDarray<double>(X).Cast<U>();
+            var trainY = new NDarray<double>(y).Cast<U>();
+            return (trainX, trainY);
+        }
 
         public static (NDarray<U>, NDarray<U>, NDarray<U>, NDarray<U>) IrisDataset<U>(double ratio)
         {

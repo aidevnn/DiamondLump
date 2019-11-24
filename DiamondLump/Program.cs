@@ -15,13 +15,7 @@ namespace DiamondLump
         {
             Console.WriteLine("Hello World, MLP on Xor Dataset.");
 
-            double[,] X0 = { { 0.0, 0.0 }, { 0.0, 1.0 }, { 1.0, 0.0 }, { 1.0, 1.0 } };
-            double[,] y0 = { { 0.0 }, { 1.0 }, { 1.0 }, { 0.0 } };
-            double[][] X = Enumerable.Range(0, 4).Select(i => Enumerable.Range(0, 2).Select(j => X0[i, j]).ToArray()).ToArray();
-            double[][] y = Enumerable.Range(0, 4).Select(i => Enumerable.Range(0, 1).Select(j => y0[i, j]).ToArray()).ToArray();
-            var ndX = new NDarray<double>(X).Cast<U>();
-            var ndY = new NDarray<double>(y).Cast<U>();
-
+            var (trainX, trainY) = ImportDataset.XorDataset<U>();
             var net = new Network<U>(new SGD<U>(0.1f), new MeanSquaredLoss<U>(), new RoundAccuracy<U>());
             net.AddLayer(new DenseLayer<U>(8, inputShape: 2));
             net.AddLayer(new TanhLayer<U>());
@@ -31,7 +25,7 @@ namespace DiamondLump
             if (summary)
                 net.Summary();
 
-            net.Fit(ndX, ndY, epochs, displayEpochs: displayEpochs);
+            net.Fit(trainX, trainY, epochs, displayEpochs: displayEpochs);
 
             if (summary)
             {
