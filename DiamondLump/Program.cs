@@ -78,7 +78,6 @@ namespace DiamondLump
                 net.Summary();
 
             net.Fit(trainX, trainY, testX, testY, epochs: epochs, batchSize: batchsize, displayEpochs: displayEpochs);
-            //net.Test(testX, testY);
 
             Console.WriteLine();
         }
@@ -88,7 +87,7 @@ namespace DiamondLump
             Console.WriteLine("Hello World!");
 
             Utils.Backend = Backend.Mkl;
-            TestXor<float>(true, 50, 10);
+            TestDigits<float>(true, 50, 10);
         }
     }
 }

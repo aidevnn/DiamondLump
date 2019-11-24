@@ -5,14 +5,14 @@ Simple Multi Layers Perceptron
 ## Xor Dataset
 
 ```
-var net = new Network<U>(new SGD<U>(0.1f), new MeanSquaredLoss<U>(), new RoundAccuracy<U>());
-net.AddLayer(new DenseLayer<U>(8, inputShape: 2));
-net.AddLayer(new TanhLayer<U>());
-net.AddLayer(new DenseLayer<U>(1));
-net.AddLayer(new SigmoidLayer<U>());
+var net = new Network<float>(new SGD<float>(0.1f), new MeanSquaredLoss<float>(), new RoundAccuracy<float>());
+net.AddLayer(new DenseLayer<float>(8, inputShape: 2));
+net.AddLayer(new TanhLayer<float>());
+net.AddLayer(new DenseLayer<float>(1));
+net.AddLayer(new SigmoidLayer<float>());
 
 net.Summary();
-net.Fit(trainX, trainY, 500, 100);
+net.Fit(trainX, trainY, epochs: 500, displayEpochs: 100);
 ```
 
 ### The Output
@@ -59,16 +59,16 @@ Example of MLP network.
 
 ```
 
-(var trainX, var trainY, var testX, var testY) = ImportDataset.IrisDataset<U>(ratio: 0.8);
-var net = new Network<U>(new SGD<U>(0.025f, 0.2f), new MeanSquaredLoss<U>(), new ArgmaxAccuracy<U>());
-net.AddLayer(new DenseLayer<U>(5, inputShape: 4));
-net.AddLayer(new TanhLayer<U>());
-net.AddLayer(new DenseLayer<U>(3));
-net.AddLayer(new SigmoidLayer<U>());
+(var trainX, var trainY, var testX, var testY) = ImportDataset.IrisDataset<float>(ratio: 0.8);
+var net = new Network<float>(new SGD<float>(0.025f, 0.2f), new MeanSquaredLoss<float>(), new ArgmaxAccuracy<float>());
+net.AddLayer(new DenseLayer<float>(5, inputShape: 4));
+net.AddLayer(new TanhLayer<float>());
+net.AddLayer(new DenseLayer<float>(3));
+net.AddLayer(new SigmoidLayer<float>());
 
 net.Summary();
 
-net.Fit(trainX, trainY, 50, 10, 10);
+net.Fit(trainX, trainY, epochs: 50, batchSize: 10, displayEpochs: 10);
 net.Test(testX, testY);
 
 ```
@@ -103,3 +103,55 @@ Time:73 ms
 Test. loss:0.036146 acc:1.0000
 
 ```
+
+## Digits Dataset
+
+This dataset is made up of 1797 8x8 images. Each image is of a hand-written digit.
+
+Source : https://scikit-learn.org/stable/auto_examples/datasets/plot_digits_last_image.html
+
+Example of MLP network.
+
+```
+(var trainX, var trainY, var testX, var testY) = ImportDataset.DigitsDataset<float>(ratio: 0.9);
+var net = new Network<float>(new SGD<float>(0.025f, 0.2f), new CrossEntropyLoss<float>(), new ArgmaxAccuracy<float>());
+net.AddLayer(new DenseLayer<float>(32, inputShape: 64));
+net.AddLayer(new SigmoidLayer<float>());
+net.AddLayer(new DenseLayer<float>(10));
+net.AddLayer(new SoftmaxLayer<float>());
+
+net.Summary();
+net.Fit(trainX, trainY, testX, testY, epochs: 50, batchSize: 100, displayEpochs: 10);
+
+```
+
+### The Output
+
+
+```
+Hello World, MLP on Digits Dataset.
+Train on 1617 / Test on 180
+Summary
+Network: SGD / CrossEntropyLoss / ArgmaxAccuracy
+
+====================================================
+| Layer                | Parameters    | Output    |
+====================================================
+| InputLayer           |             0 |      (64) |
+| DenseLayer           |          2080 |      (32) |
+| SigmoidActivation    |             0 |      (32) |
+| DenseLayer           |           330 |      (10) |
+| SoftmaxActivation    |             0 |      (10) |
+====================================================
+
+Total Parameters:2410
+
+Epoch:    0/50. loss:0.269325 acc:0.4194; Validation. loss:0.194694 acc:0.5944 Time:        55 ms
+Epoch:   10/50. loss:0.020807 acc:0.9756; Validation. loss:0.048198 acc:0.9056 Time:       186 ms
+Epoch:   20/50. loss:0.012417 acc:0.9856; Validation. loss:0.036307 acc:0.9389 Time:       310 ms
+Epoch:   30/50. loss:0.008853 acc:0.9919; Validation. loss:0.036102 acc:0.9278 Time:       481 ms
+Epoch:   40/50. loss:0.006138 acc:0.9963; Validation. loss:0.032928 acc:0.9444 Time:       674 ms
+Epoch:   50/50. loss:0.004598 acc:0.9981; Validation. loss:0.032193 acc:0.9444 Time:       864 ms
+Time:864 ms
+```
+
