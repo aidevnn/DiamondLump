@@ -22,10 +22,8 @@ namespace DiamondLump
             var ndX = new NDarray<double>(X).Cast<U>();
             var ndY = new NDarray<double>(y).Cast<U>();
 
-            var net = new Network<U>(new SGD<U>(0.01f), new MeanSquaredLoss<U>(), new RoundAccuracy<U>());
+            var net = new Network<U>(new SGD<U>(0.1f), new MeanSquaredLoss<U>(), new RoundAccuracy<U>());
             net.AddLayer(new DenseLayer<U>(8, inputShape: 2));
-            net.AddLayer(new TanhLayer<U>());
-            net.AddLayer(new DenseLayer<U>(32));
             net.AddLayer(new TanhLayer<U>());
             net.AddLayer(new DenseLayer<U>(1));
             net.AddLayer(new SigmoidLayer<U>());
@@ -90,11 +88,7 @@ namespace DiamondLump
             Console.WriteLine("Hello World!");
 
             Utils.Backend = Backend.Mkl;
-            for(int k = 0; k < 5; ++k)
-            {
-                TestDigits<double>(false, 50, 10, 100);
-                TestDigits<float>(false, 50, 10, 100);
-            }
+            TestXor<float>(true, 50, 10);
         }
     }
 }
